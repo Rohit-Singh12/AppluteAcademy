@@ -13,7 +13,7 @@ export default function Footer() {
       <p className="text-gray-400 text-sm">
         © {new Date().getFullYear()} Applute Academy. All rights reserved.
       </p>
-      <p className="text-orange-400 font-semibold mt-2 text-sm">
+      <p className="font-semibold mt-2 text-sm text-gradient-blue">
         Learn • Build • Grow
       </p>
       <p className="text-gray-500 mt-2 text-xs">
@@ -29,7 +29,7 @@ export default function Footer() {
           href="https://www.facebook.com/yourpage"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-300 hover:text-[#007bff] transition-colors duration-300"
+          className="hover:text-gradient-blue transition-colors duration-300"
         >
           <FaFacebookF size={18} />
         </a>
@@ -37,7 +37,7 @@ export default function Footer() {
           href="https://twitter.com/yourpage"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-300 hover:text-[#1DA1F2] transition-colors duration-300"
+          className="hover:text-gradient-blue transition-colors duration-300"
         >
           <FaTwitter size={18} />
         </a>
@@ -45,7 +45,7 @@ export default function Footer() {
           href="https://www.linkedin.com/company/yourpage"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-300 hover:text-[#0A66C2] transition-colors duration-300"
+          className="hover:text-gradient-blue transition-colors duration-300"
         >
           <FaLinkedinIn size={18} />
         </a>
@@ -53,11 +53,25 @@ export default function Footer() {
           href="https://www.instagram.com/yourpage"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-300 hover:text-[#E1306C] transition-colors duration-300"
+          className="hover:text-gradient-blue transition-colors duration-300"
         >
           <FaInstagram size={18} />
         </a>
       </div>
+
+      {/* Gradient Blue Styles */}
+      <style jsx>{`
+        .text-gradient-blue {
+          background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        .hover\\:text-gradient-blue:hover {
+          background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      `}</style>
     </footer>
   );
 }
