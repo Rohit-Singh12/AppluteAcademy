@@ -1,20 +1,13 @@
-# Use Node image
-FROM node:20-alpine
-
-# Set working directory
+# Build stage
+FROM node:20-alpine AS builder
 WORKDIR /app
-
-# Copy package files first for better caching
 COPY package*.json ./
-
-# Install dependencies
-RUN npm ci
-
-# Copy the rest of the app
+RUN npm install
 COPY . .
+RUN npm run build
 
-# Expose port
+# Production stage
+FROM nginx:alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
 EXPOSE 5173
-
-# Start the React app
-CMD ["npm", "run", "dev"]
+CMD ["nginx", "-g", "daemon off;"]
