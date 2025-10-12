@@ -21,7 +21,7 @@ jobs:
             echo "REPO_OWNER_LOWER=$(echo '${{ env.REPO_OWNER }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Build Docker image
-        run: docker build -t ghcr.io/${{ env.REPO_OWNER_LOWER }}/vite-app:latest .
+        run: docker build -t ghcr.io/${{ env.REPO_OWNER_LOWER }}/vite-app:latest ./MainPage/frontend
 
       - name: Push Docker image
         run: docker push ghcr.io/${{ env.REPO_OWNER_LOWER }}/vite-app:latest
@@ -37,4 +37,4 @@ jobs:
             docker pull ghcr.io/${{ env.REPO_OWNER_LOWER }}/vite-app:latest
             docker stop vite-app || true
             docker rm vite-app || true
-            docker run -d --name vite-app -p 5173:5173 ghcr.io/${{ env.REPO_OWNER_LOWER }}/vite-app:latest
+            docker run -d --name vite-app -p 4009:4009 ghcr.io/${{ env.REPO_OWNER_LOWER }}/vite-app:latest
