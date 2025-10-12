@@ -9,7 +9,7 @@ export default defineConfig({
     host: '0.0.0.0',  // bind to all interfaces
     port: 5173,
     allowedHosts: [
-      'applute.com',
+      'academy.applute.com',
     ]
   }
 });
