@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ env.REPO_OWNER_LOWER }} --password-stdin
+            echo "${{ secrets.PAT }}" | docker login ghcr.io -u ${{ env.REPO_OWNER_LOWER }} --password-stdin
             docker pull ghcr.io/${{ env.REPO_OWNER_LOWER }}/vite-app:latest
             docker stop vite-app || true
             docker rm vite-app || true
