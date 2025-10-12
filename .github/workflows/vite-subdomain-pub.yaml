@@ -1,4 +1,4 @@
-name: CD - Deploy Main page
+name: CD - Deploy academy Vite App
 
 on:
   workflow_dispatch:
@@ -21,10 +21,10 @@ jobs:
             echo "REPO_OWNER_LOWER=$(echo '${{ env.REPO_OWNER }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Build Docker image
-        run: docker build -t ghcr.io/${{ env.REPO_OWNER_LOWER }}/vite-app:latest ./MainPage/frontend
+        run: docker build -t ghcr.io/${{ env.REPO_OWNER_LOWER }}/academy-vite-app:latest .
 
       - name: Push Docker image
-        run: docker push ghcr.io/${{ env.REPO_OWNER_LOWER }}/vite-app:latest
+        run: docker push ghcr.io/${{ env.REPO_OWNER_LOWER }}/academy-vite-app:latest
 
       - name: SSH into server & deploy container
         uses: appleboy/ssh-action@v0.1.10
@@ -34,7 +34,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             echo "${{ secrets.PAT }}" | docker login ghcr.io -u ${{ env.REPO_OWNER_LOWER }} --password-stdin
-            docker pull ghcr.io/${{ env.REPO_OWNER_LOWER }}/vite-app:latest
-            docker stop vite-app || true
-            docker rm vite-app || true
-            docker run -d --name vite-app -p 4009:4009 ghcr.io/${{ env.REPO_OWNER_LOWER }}/vite-app:latest
+            docker pull ghcr.io/${{ env.REPO_OWNER_LOWER }}/academy-vite-app:latest
+            docker stop academy-vite-app || true
+            docker rm academy-vite-app || true
+            docker run -d --name academy-vite-app -p 4009:4009 ghcr.io/${{ env.REPO_OWNER_LOWER }}/academy-vite-app:latest
