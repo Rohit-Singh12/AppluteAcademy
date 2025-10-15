@@ -1,20 +1,30 @@
-# Use Node image
-FROM node:20-alpine
+# ==========================
+# Stage 1 — Build the Vite app
+# ==========================
+FROM node:20-alpine AS builder
 
 # Set working directory
 WORKDIR /app
 
-# Copy package files first for better caching
+# Copy dependency files first (better Docker cache)
 COPY package*.json ./
 
 # Install dependencies
 RUN npm ci
 
-# Copy the rest of the app
+# Copy source code
 COPY . .
 
-# Expose port
-EXPOSE 5173
+# Build production bundle
+RUN npm run build
 
-# Start the React app
-CMD ["npm", "run", "dev"]
+
+# ==========================
+# Stage 2 — Serve with NGINX
+# ==========================
+FROM nginx:1.27-alpine
+
+# Copy production build from previous stage
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Copy your custom NGIN
