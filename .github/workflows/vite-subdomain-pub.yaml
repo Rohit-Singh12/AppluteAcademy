@@ -37,4 +37,4 @@ jobs:
             docker pull ghcr.io/${{ env.REPO_OWNER_LOWER }}/academy-vite-app:latest
             docker stop academy-vite-app || true
             docker rm academy-vite-app || true
-            docker run -d  --name academy-vite-app -p 5173:80 --restart unless-stopped ghcr.io/${{ env.REPO_OWNER_LOWER }}/academy-vite-app:latest
+            docker run -d --name academy-vite-app -p 5173:5173 --restart unless-stopped ghcr.io/${{ env.REPO_OWNER_LOWER }}/academy-vite-app:latest
