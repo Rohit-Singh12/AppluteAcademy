@@ -14,7 +14,7 @@ RUN npm ci
 COPY . .
 
 # Expose port
-EXPOSE 80
+EXPOSE 5173
 
-# Start the React app
-CMD ["npm", "run", "dev"]
+# Start the React app on all network interfaces
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

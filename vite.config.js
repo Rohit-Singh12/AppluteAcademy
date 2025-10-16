@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     host: '0.0.0.0',  // bind to all interfaces
-    port: 80,
+    port: 5173,
     allowedHosts: [
       'academy.applute.com',
     ]
